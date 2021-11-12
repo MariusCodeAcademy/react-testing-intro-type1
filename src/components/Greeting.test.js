@@ -21,6 +21,14 @@ describe('Greeting items on screen', () => {
     const partOfParag = screen.getByText(/how to test/i);
     expect(partOfParag).toBeInTheDocument();
   });
+
+  test('rendes title prop on cmp', () => {
+    render(<Greeting title='testing123' />);
+
+    const renderedTitle = screen.getByText('testing123');
+
+    expect(renderedTitle).toBeInTheDocument();
+  });
 });
 
 describe('Button toggles paragraph', () => {

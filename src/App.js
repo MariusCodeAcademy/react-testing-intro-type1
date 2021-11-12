@@ -5,7 +5,7 @@ import Greeting from './components/Greeting';
 function App() {
   return (
     <div className='App'>
-      <Greeting />
+      <Greeting title='Testing 3000' />
     </div>
   );
 }

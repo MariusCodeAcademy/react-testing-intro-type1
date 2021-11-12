@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-function Greeting() {
+function Greeting({ title }) {
   // state = isLoggedIn => false
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   // <p>We now how to test now</p> == false
@@ -10,7 +10,9 @@ function Greeting() {
   };
   return (
     <>
+      <h1>{title}</h1>
       <h2>Hello World!</h2>
+
       {!isLoggedIn && <p>We now how to test now</p>}
       {/* <p>We now how to test now</p> */}
       {isLoggedIn && <p>Do we really, really? </p>}
