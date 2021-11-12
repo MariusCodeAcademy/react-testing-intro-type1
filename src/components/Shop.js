@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 const URL = 'https://fakestoreapi.com/products';
 
 function Shop() {
+  console.log('Shop rendered');
   const [shopItems, setShopItems] = useState([]);
   // Kai tik uzsikraus komponentas
   // pasissiusti prekes is https://fakestoreapi.com/products
@@ -13,18 +14,22 @@ function Shop() {
     (async () => {
       const resp = await fetch(URL);
       const dataArr = await resp.json();
-      console.log({ dataArr });
+      // console.log({ dataArr });
+      setShopItems(dataArr);
     })();
   }, []);
 
   return (
     <section>
       <h2>Our shop</h2>
+
+      {shopItems.length === 0 && <h3>Loading ...</h3>}
+
       <ul>
         {shopItems.map(({ id, title, price }) => (
           <li key={id}>
             {' '}
-            {title} ${price}
+            {title} <strong>${price}</strong>
           </li>
         ))}
       </ul>
