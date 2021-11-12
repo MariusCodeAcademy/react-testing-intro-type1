@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import Greeting from './Greeting';
 
 describe('Greeting items on screen', () => {
@@ -19,5 +20,34 @@ describe('Greeting items on screen', () => {
     //Assert
     const partOfParag = screen.getByText(/how to test/i);
     expect(partOfParag).toBeInTheDocument();
+  });
+});
+
+describe('Button toggles paragraph', () => {
+  // new text after button press
+  test('buton renders new paragraph "Do we really, really?"', () => {
+    // Arrange
+    render(<Greeting />);
+    //Act
+    const mainBtn = screen.getByRole('button');
+    userEvent.click(mainBtn);
+
+    //Assert
+    const changedPara = screen.getByText('Do we really, really?');
+    expect(changedPara).toBeInTheDocument();
+  });
+
+  test('button press hides "We now how to test now"', () => {
+    // Arrange
+    render(<Greeting />);
+    //Act
+    const mainBtn = screen.getByRole('button');
+    userEvent.click(mainBtn);
+
+    // Assert
+    // getByText - jei neranda meta klaida
+    // queryByText - jei neranda grazina null
+    const wasPara = screen.queryByText('We now how to test now');
+    expect(wasPara).toBeNull();
   });
 });
